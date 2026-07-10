@@ -572,9 +572,9 @@ public class AvatarWindowHandler : MonoBehaviour
         if (!_snapSmoothingActive || !enableSnapSmoothing)
         {
             if (dx != 0 || dy != 0) {
-                GetClipCursor(out RECT bck1);
+                // GetClipCursor(out RECT bck1);
                 MoveWindow(unityHWND, targetX, targetY, w, h, true);
-                ClipCursor(ref bck1);
+                // ClipCursor(ref bck1);
             }
             return;
         }
@@ -597,9 +597,9 @@ public class AvatarWindowHandler : MonoBehaviour
         int nx = Mathf.RoundToInt(nextX), ny = Mathf.RoundToInt(nextY);
         if (Mathf.Abs(targetX - nx) <= 1 && Mathf.Abs(targetY - ny) <= 1) { nx = targetX; ny = targetY; _snapSmoothingActive = false; _snapVelX = _snapVelY = 0f; }
         if (nx != ur.Left || ny != ur.Top) {
-            GetClipCursor(out RECT bck2);
+            // GetClipCursor(out RECT bck2);
             MoveWindow(unityHWND, nx, ny, w, h, true);
-            ClipCursor(ref bck2);
+            // ClipCursor(ref bck2);
         }
     }
     bool IsStillNearSnappedWindow()
@@ -892,9 +892,9 @@ public class AvatarWindowHandler : MonoBehaviour
     }
     void SetTopMost(bool en)
     {
-        GetClipCursor(out RECT backup);
+        // GetClipCursor(out RECT backup);
         SetWindowPos(unityHWND, en ? HWND_TOPMOST : HWND_NOTOPMOST, 0, 0, 0, 0, SWP_NOMOVE | SWP_NOSIZE | SWP_NOACTIVATE);
-        ClipCursor(ref backup);
+        // ClipCursor(ref backup);
     }
 
     bool IsWindowMaximized(IntPtr hwnd)
@@ -984,8 +984,8 @@ public class AvatarWindowHandler : MonoBehaviour
     const uint LWA_ALPHA = 0x00000002;
     [DllImport("user32.dll", SetLastError = true, CharSet = CharSet.Auto)] static extern int GetClassName(IntPtr hWnd, System.Text.StringBuilder lpClassName, int nMaxCount);
     [DllImport("user32.dll")] static extern IntPtr GetAncestor(IntPtr hwnd, uint gaFlags);
-    [DllImport("user32.dll")] static extern bool GetClipCursor(out RECT lpRect);
-    [DllImport("user32.dll")] static extern bool ClipCursor(ref RECT lpRect);
+    // [DllImport("user32.dll")] static extern bool GetClipCursor(out RECT lpRect);
+    // [DllImport("user32.dll")] static extern bool ClipCursor(ref RECT lpRect);
     [DllImport("user32.dll")] static extern bool GetWindowRect(IntPtr hWnd, out RECT lpRect);
     [DllImport("user32.dll")] static extern bool MoveWindow(IntPtr hWnd, int X, int Y, int nWidth, int nHeight, bool bRepaint);
     [DllImport("user32.dll")] static extern bool IsWindowVisible(IntPtr hWnd);

@@ -1,0 +1,20 @@
+set shell := ["powershell.exe", "-c"]
+
+alias help := default
+
+# Print this message
+default:
+    @just --list
+# Clean build dir
+[group("Development")]
+clean:
+    Remove-Item -Recurse -Force build/* -ErrorAction SilentlyContinue
+# Install dependencies with conan
+[group("Development")]
+[working-directory("build")]
+install: clean
+    cmake .. -G "Ninja"
+# Build project
+[group("Development")]
+build: install
+    cmake --build build --config Release
